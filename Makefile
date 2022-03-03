@@ -1,12 +1,16 @@
 .SUFFIXES:
 FC = gfortran
+FFLAGS = -std=f2008ts -Wall -pedantic
 
-MOD_SOURCES = mod_*.f90
-SOURCES = *.f90
+MOD_SOURCES = $(wildcard mod_*.f90)
+SOURCES =  $(wildcard *.f90)
 
 all: $(subst .f90,.o,$(SOURCES))
-	$(FC) -o $@ $+
+	$(FC) $(FFLAGS) -o $@ $+
 
+
+modules: $(MOD_SOURCES)
+	$(FC) $(FFLAGS) -c $(MOD_SOURCES)
 
 .PHONY: clean
 clean:
