@@ -6,10 +6,12 @@ contains
 
     function create_board(width, height) result(board)
         integer(int32) :: width, height
-        logical, allocatable :: board(:)
+        logical, dimension(width,height) :: board
+        real, dimension(width,height) :: board_intermediate ! to store the randoms
 
-        board = (/.true. , .true./)
-
+        call random_seed()
+        call random_number(board_intermediate)
+        board = board_intermediate < 0.5
     end function create_board
 
 
