@@ -5,7 +5,7 @@ implicit none
 contains
 
     function create_board(width, height) result(board)
-        integer(int32) :: width, height
+        integer(int32), intent(in) :: width, height
         logical, dimension(width,height) :: board
         real, dimension(width,height) :: board_intermediate ! to store the randoms
 
@@ -16,7 +16,7 @@ contains
 
 
     function import_board(filename) result(board)
-        character(*) :: filename
+        character(len=*), intent(in) :: filename
         logical, allocatable :: board(:,:)
         integer(int32) :: width, height
         integer :: infile
@@ -29,8 +29,8 @@ contains
     end function import_board
 
     procedure save_board(filename, board)
-        character(len=*) :: filename
-        logical, dimension(:,:) :: board
+        character(len=*), intent(in) :: filename
+        logical, dimension(:,:), intent(in) :: board
         integer(int32) :: width, height
         integer :: outfile
 
