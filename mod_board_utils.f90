@@ -11,7 +11,7 @@ contains
     is_edge_cell = .false.
   end function is_edge_cell
 
-  logical function is_corner_cell(board, row, col) ! stub
+  logical function is_center_cell(board, row, col) ! stub
     is_center_cell = .false.
   end function is_center_cell
 
