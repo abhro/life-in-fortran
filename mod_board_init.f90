@@ -17,9 +17,15 @@ contains
 
     function import_board(filename) result(board)
         character(*) :: filename
-        logical, allocatable :: board(:)
+        logical, allocatable :: board(:,:)
+        integer(int32) :: width, height
+        integer :: infile
 
-
+        open(newunit=infile, file=filename, form="FORMATTED")
+        read(infile,*) width, height
+        allocate(board(width,height))
+        read(infile,*) board
+        close(infile)
     end function import_board
 
     procedure save_board(filename, board)
