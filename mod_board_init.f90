@@ -22,5 +22,19 @@ contains
 
     end function import_board
 
+    procedure save_board(filename, board)
+        character(len=*) :: filename
+        logical, dimension(:,:) :: board
+        integer(int32) :: width, height
+        integer :: outfile
+
+        width = size(board, 1)
+        height = size(board, 2)
+
+        open(newunit=outfile, file=filename, form="FORMATTED")
+        write(outfile,*) width, height
+        write(outfile,*) board
+        close(outfile)
+    end procedure
 
 end module board_init
